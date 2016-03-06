@@ -34,18 +34,26 @@ end
 --       left and far right of the TIS-100 segment grid. Input streams will be automatically
 --       placed on the top, while output and image streams will be placed on the bottom.
 --
+--function get_streams()
+--	input = {}
+--	output = {}
+--	for i = 1,39 do
+--		input[i] = math.random(5,999)
+--		output[i] = input[i] * 2
+--	end
+--	return {
+--		{ STREAM_INPUT, "IN.A", 1, input },
+--		{ STREAM_OUTPUT, "OUT.A", 2, output },
+--	}
+--end
+
 function get_streams()
-	input = {}
-	output = {}
-	for i = 1,39 do
-		input[i] = math.random(5,999)
-		output[i] = input[i] * 2
-	end
-	return {
-		{ STREAM_INPUT, "IN.A", 1, input },
-		{ STREAM_OUTPUT, "OUT.A", 2, output },
-	}
+    return { 
+        { STREAM_INPUT,  "IN", 1, {1,2,3,4,5,6} },
+        { STREAM_OUTPUT, "IN", 1, {1,2,3,4,5,6} },
+    }
 end
+
 
 -- The function get_layout() should return an array of exactly 12 TILE_* values, which
 -- describe the layout and type of tiles found in the puzzle.
@@ -57,7 +65,7 @@ end
 function get_layout()
 	return { 
 		TILE_MEMORY, 	TILE_COMPUTE, 	TILE_COMPUTE, 	TILE_COMPUTE,
-		TILE_COMPUTE, 	TILE_COMPUTE,	TILE_COMPUTE, 	TILE_COMPUTE,
+		TILE_COMPUTE, 	TILE_DAMAGED,	TILE_COMPUTE, 	TILE_DAMAGED,
 		TILE_COMPUTE, 	TILE_COMPUTE,	TILE_COMPUTE, 	TILE_COMPUTE,
 	}
 end
